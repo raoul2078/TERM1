@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import java.lang.String?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<StackPane fx:id="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+    <styleClass>
+        <String fx:value="side-menu"/>
+    </styleClass>
+    <JFXListView fx:id="sideList" style="-fx-cursor: hand;">
+        <Label fx:id="patients">
+            Patients
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="MEDKIT" size="1.5em"
+                                      styleClass="option-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+        </Label>
+        <Label fx:id="addPatient">
+            Nouveau Patient
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="USER_PLUS" size="1.5em"
+                                      styleClass="option-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+        </Label>
+        <Label fx:id="diets">
+            Régimes
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="CUTLERY" size="1.5em"
+                                         styleClass="option-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+        </Label>
+        <Label fx:id="addDiet">
+            Nouveau régimes
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="PLUS_CIRCLE" size="1.5em"
+                                         styleClass="option-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+        </Label>
+    </JFXListView>
+</StackPane>

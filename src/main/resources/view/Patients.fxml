@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import com.jfoenix.controls.JFXTreeTableColumn?>
+<StackPane fx:id="root"
+           xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml">
+    <VBox maxWidth="700" maxHeight="700" spacing="10">
+        <children>
+            <HBox alignment="CENTER">
+                <Label styleClass="title-label">Patients</Label>
+                <Label styleClass="title-label" fx:id="treeTableViewCount" minWidth="80"/>
+                <StackPane HBox.hgrow="ALWAYS">
+                    <StackPane StackPane.alignment="CENTER_RIGHT" maxWidth="200">
+                        <JFXTextField fx:id="searchField" promptText="Search..."/>
+                    </StackPane>
+                </StackPane>
+            </HBox>
+            <JFXTreeTableView fx:id="treeTableView">
+                <columns>
+                    <JFXTreeTableColumn fx:id="firstNameColumn"
+                                        minWidth="133" text="First Name" prefWidth="133"
+                                        resizable="false"/>
+                    <JFXTreeTableColumn fx:id="lastNameColumn" text="Last Name"
+                                        minWidth="133" resizable="false"/>
+                    <JFXTreeTableColumn fx:id="heightColumn" text="Taille(cm)"
+                                        minWidth="133" resizable="false"/>
+                    <JFXTreeTableColumn fx:id="weightColumn" text="Poids(kg)"
+                                        minWidth="133" resizable="false"/>
+                    <JFXTreeTableColumn fx:id="dietColumn" text="Régime"
+                                        minWidth="133" resizable="false"/>
+                </columns>
+            </JFXTreeTableView>
+        </children>
+    </VBox>
+</StackPane>

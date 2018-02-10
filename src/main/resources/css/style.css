@@ -1,0 +1,34 @@
+.jfx-decorator {
+    -fx-decorator-color: derive(-blue-grey-800, -20%);
+}
+
+.jfx-decorator .jfx-decorator-buttons-container {
+    -fx-background-color: -fx-decorator-color;
+}
+
+.jfx-decorator .resize-border {
+    -fx-border-color: -fx-decorator-color;
+    -fx-border-width: 0 4 4 4;
+}
+
+.jfx-tool-bar {
+    -fx-background-color: -blue-grey-400;
+}
+
+
+.root {
+    -fx-background-color: #ffffff;
+}
+
+.jfx-hamburger StackPane {
+    -fx-background-color: -red-A200;
+    -fx-background-radius: 5px;
+}
+
+
+
+.btn-primary {
+    -fx-background-color: -red-A200;
+    -fx-font-size:14px;
+    -fx-text-fill:WHITE;
+}

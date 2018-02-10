@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/8"
+           xmlns:fx="http://javafx.com/fxml/1">
+    <VBox maxHeight="600" maxWidth="471.0" prefHeight="354.0" prefWidth="471.0" spacing="20" alignment="TOP_CENTER">
+        <Label styleClass="title-label">Ajout Patient</Label>
+        <JFXTextField fx:id="lastName" labelFloat="true" promptText="Nom"/>
+        <JFXTextField fx:id="firstName" labelFloat="true" promptText="Prénom"/>
+        <JFXTextField fx:id="email" labelFloat="true" promptText="Email"/>
+        <JFXTextField fx:id="phone" labelFloat="true" promptText="Téléphone"/>
+        <JFXTextField fx:id="height" labelFloat="true" promptText="Taille (cm)"/>
+        <JFXTextField fx:id="weight" labelFloat="true" promptText="Poids (kg)"/>
+        <JFXComboBox fx:id="diets" promptText="Sélectionner le régime" prefWidth="200"/>
+        <JFXButton fx:id="submitButton" prefWidth="100" prefHeight="40" buttonType="RAISED" styleClass="btn-primary" text="VALIDER" onMouseClicked="#add"/>
+    </VBox>
+</StackPane>
