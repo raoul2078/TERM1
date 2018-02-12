@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<StackPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+           xmlns:fx="http://javafx.com/fxml/1">
+    <HBox>
+        <VBox HBox.hgrow="ALWAYS">
+            <JFXListView fx:id="list" VBox.vgrow="ALWAYS">
+                <Label>
+                    <Label fx:id="name"/>
+                    <graphic>
+                        <StackPane styleClass="custom-jfx-list-view-icon-container">
+                            <FontAwesomeIconView glyphName="USER_MD" size="2.5em"
+                                                 styleClass="option-jfx-list-view-icon"/>
+                        </StackPane>
+                    </graphic>
+                </Label>
+                <Label fx:id="heightAndweight"/>
+                <Label>
+                    <Label fx:id="email"/>
+                    <graphic>
+                        <StackPane styleClass="custom-jfx-list-view-icon-container">
+                            <FontAwesomeIconView glyphName="ENVELOPE" size="2.5em"
+                                                 styleClass="option-jfx-list-view-icon"/>
+                        </StackPane>
+                    </graphic>
+                </Label>
+                <Label>
+                    <Label fx:id="phone"/>
+                    <graphic>
+                        <StackPane styleClass="custom-jfx-list-view-icon-container">
+                            <FontAwesomeIconView glyphName="MOBILE_PHONE" size="2.5em"
+                                                 styleClass="option-jfx-list-view-icon"/>
+                        </StackPane>
+                    </graphic>
+                </Label>
+            </JFXListView>
+        </VBox>
+        <VBox HBox.hgrow="ALWAYS">
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                <Label>Menu</Label>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </HBox>
+</StackPane>

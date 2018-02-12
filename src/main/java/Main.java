@@ -1,6 +1,8 @@
 import com.jfoenix.controls.JFXDecorator;
 import com.jfoenix.svg.SVGGlyph;
 import controller.MainController;
+import controller.PatientDetailsController;
+import controller.PatientsController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.container.DefaultFlowContainer;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
@@ -41,7 +43,8 @@ public class Main extends Application{
         stylesheets.addAll(Main.class.getResource("/css/jfoenix-fonts.css").toExternalForm(),
                 Main.class.getResource("/css/jfoenix-design.css").toExternalForm(),
                 Main.class.getResource("/css/jfoenix-main-demo.css").toExternalForm(),
-                Main.class.getResource("/css/style.css").toExternalForm()
+                Main.class.getResource("/css/style.css").toExternalForm(),
+                Main.class.getResource("/css/dark.css").toExternalForm()
         );
         stage.setScene(scene);
         stage.show();

@@ -73,6 +73,5 @@ public final class MainController {
         final FlowHandler sideMenuFlowHandler = sideMenuFlow.createHandler(context);
         drawer.setSidePane(sideMenuFlowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration,
                 SWIPE_LEFT)));
-
     }
 }

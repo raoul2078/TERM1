@@ -24,7 +24,7 @@
                 </StackPane>
             </HBox>
             <JFXTreeTableView fx:id="treeTableView">
-                <columns>
+                <columns >
                     <JFXTreeTableColumn fx:id="firstNameColumn"
                                         minWidth="133" text="First Name" prefWidth="133"
                                         resizable="false"/>

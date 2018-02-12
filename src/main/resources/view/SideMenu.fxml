@@ -15,7 +15,7 @@
             <graphic>
                 <StackPane styleClass="custom-jfx-list-view-icon-container">
                     <FontAwesomeIconView glyphName="MEDKIT" size="1.5em"
-                                      styleClass="option-jfx-list-view-icon"/>
+                                         styleClass="option-jfx-list-view-icon"/>
                 </StackPane>
             </graphic>
         </Label>
@@ -24,7 +24,7 @@
             <graphic>
                 <StackPane styleClass="custom-jfx-list-view-icon-container">
                     <FontAwesomeIconView glyphName="USER_PLUS" size="1.5em"
-                                      styleClass="option-jfx-list-view-icon"/>
+                                         styleClass="option-jfx-list-view-icon"/>
                 </StackPane>
             </graphic>
         </Label>

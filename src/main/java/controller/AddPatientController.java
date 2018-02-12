@@ -19,10 +19,10 @@ public class AddPatientController {
     private ViewFlowContext context;
 
     @FXML
-    private JFXTextField lastname;
+    private JFXTextField lastName;
 
     @FXML
-    private JFXTextField firstname;
+    private JFXTextField firstName;
 
     @FXML
     private JFXTextField email;
@@ -67,8 +67,8 @@ public class AddPatientController {
     }
 
     public void add() {
-        String lastname = this.lastname.getText();
-        String firstname = this.firstname.getText();
+        String lastname = this.lastName.getText();
+        String firstname = this.firstName.getText();
         String email = this.email.getText();
         String phone = this.phone.getText();
         double height = Double.parseDouble(this.height.getText());

@@ -79,16 +79,17 @@ public class Patient extends RecursiveTreeObject<Patient> {
         return diet;
     }
 
+
     @Override
     public String toString() {
         return "Patient{" +
-                "lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", height=" + height +
-                ", weight=" + weight +
-                ", diet=" + diet +
+                "lastName=" + lastName.get() +
+                ", firstName=" + firstName.get() +
+                ", email=" + email.get() +
+                ", phone=" + phone.get() +
+                ", height=" + height.get() +
+                ", weight=" + weight.get() +
+                ", diet=" + diet.get() +
                 '}';
     }
 }
