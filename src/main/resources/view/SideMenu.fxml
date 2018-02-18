@@ -9,7 +9,7 @@
     <styleClass>
         <String fx:value="side-menu"/>
     </styleClass>
-    <JFXListView fx:id="sideList" style="-fx-cursor: hand;">
+    <JFXListView fx:id="sideList" style="-fx-cursor: hand;" >
         <Label fx:id="patients">
             Patients
             <graphic>

@@ -6,10 +6,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.geometry.Insets?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXButton?>
 <StackPane fx:id="root"
            xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml">
-    <VBox>
-        <Label styleClass="title-label">Home Page</Label>
+    <VBox maxWidth="700" maxHeight="700" spacing="20">
+        <HBox spacing="60">
+            <VBox.margin>
+                <Insets top="60"/>
+            </VBox.margin>
+            <VBox HBox.hgrow="ALWAYS" spacing="20">
+                <Label styleClass="headline">Connectez-vous</Label>
+                <JFXTextField fx:id="loginField" labelFloat="true" promptText="Login"/>
+                <JFXPasswordField fx:id="passwordField" labelFloat="true" promptText="Mot de passe"/>
+                <JFXButton fx:id="loginButton" prefWidth="100" prefHeight="40" buttonType="RAISED" styleClass="btn-success" text="CONNEXION" onMouseClicked="#login"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS" spacing="20">
+                <Label styleClass="headline">Pas de compte? Inscrivez-vous</Label>
+                <JFXTextField fx:id="loginFieldR" labelFloat="true" promptText="Login"/>
+                <JFXPasswordField fx:id="passwordFieldR" labelFloat="true" promptText="Mot de passe"/>
+                <JFXTextField fx:id="lastNameField" labelFloat="true" promptText="Nom"/>
+                <JFXTextField fx:id="firstNameField" labelFloat="true" promptText="Prénom"/>
+                <JFXTextField fx:id="emailField" labelFloat="true" promptText="Email"/>
+                <JFXTextField fx:id="phoneField" labelFloat="true" promptText="Téléphone"/>
+                <JFXButton fx:id="registerButton" prefWidth="120" prefHeight="40" buttonType="RAISED" styleClass="btn-success" text="INSCRIPTION" onMouseClicked="#register"/>
+            </VBox>
+        </HBox>
     </VBox>
 </StackPane>

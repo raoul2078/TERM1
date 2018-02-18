@@ -1,34 +1,40 @@
-.jfx-decorator {
-    -fx-decorator-color: derive(-blue-grey-800, -20%);
-}
 
-.jfx-decorator .jfx-decorator-buttons-container {
-    -fx-background-color: -fx-decorator-color;
+.tree-table-row-cell:even:filled {
+    -fx-background-color: white;
 }
-
-.jfx-decorator .resize-border {
-    -fx-border-color: -fx-decorator-color;
-    -fx-border-width: 0 4 4 4;
-}
-
-.jfx-tool-bar {
-    -fx-background-color: -blue-grey-400;
-}
-
 
 .root {
-    -fx-background-color: #ffffff;
+    -fx-background-color: -grey-100;
+    -fx-blue: -blue-700;
+    -fx-green: -teal-500;
 }
 
-.jfx-hamburger StackPane {
-    -fx-background-color: -red-A200;
-    -fx-background-radius: 5px;
+.tree-table-row-cell:empty {
+    -fx-border: 0 0 0 0;
+    -fx-background-color: -grey-100;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
 }
-
-
 
 .btn-primary {
-    -fx-background-color: -red-A200;
-    -fx-font-size:14px;
-    -fx-text-fill:WHITE;
+    -fx-background-color: -fx-blue;
+    -fx-text-fill: white;
 }
+
+.btn-success {
+    -fx-background-color: -fx-green;
+    -fx-text-fill: white;
+}
+
+/*Tab Pane*/
+.tab {
+    -fx-background-color: -fx-blue;
+    -fx-pref-width: 180;
+    -fx-pref-height: 30;
+    -fx-font-size: 18px;
+}
+
+.tab-header-background {
+    -fx-background-color: -fx-blue;
+}
+

@@ -4,24 +4,30 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.*;
 
 public class Patient extends RecursiveTreeObject<Patient> {
+    private SimpleIntegerProperty id;
     private StringProperty lastName;
     private StringProperty firstName;
     private StringProperty email;
     private StringProperty phone;
-    private SimpleDoubleProperty height;
+    private SimpleIntegerProperty height;
     private SimpleDoubleProperty weight;
     private StringProperty diet;
 
-    public Patient(String firstName, String lastName, String email, String phone, double height, double weight, String diet) {
+    public Patient(int id, String firstName, String lastName, String email, String phone, int height, double weight, String diet) {
+        this.id = new SimpleIntegerProperty(id);
         this.lastName = new SimpleStringProperty(lastName);
         this.firstName = new SimpleStringProperty(firstName);
         this.email = new SimpleStringProperty(email);
         this.phone = new SimpleStringProperty(phone);
-        this.height = new SimpleDoubleProperty(height);
+        this.height = new SimpleIntegerProperty(height);
         this.weight = new SimpleDoubleProperty(weight);
         this.diet = new SimpleStringProperty(diet);
     }
 
+
+    public int getId() {
+        return id.get();
+    }
 
     public String getLastName() {
         return lastName.get();
@@ -59,7 +65,7 @@ public class Patient extends RecursiveTreeObject<Patient> {
         return height.get();
     }
 
-    public SimpleDoubleProperty heightProperty() {
+    public SimpleIntegerProperty heightProperty() {
         return height;
     }
 

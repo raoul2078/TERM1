@@ -123,12 +123,12 @@
 }
 
 .animated-burgers .jfx-hamburger StackPane {
-    -fx-background-color: #5264AE;
+    -fx-background-color: -fx-blue;
     -fx-background-radius: 4px;
 }
 
 .animated-burgers .jfx-rippler {
-    -jfx-rippler-fill: #5264AE;
+    -jfx-rippler-fill: -fx-blue;
 }
 
 .icons-badge .badge-pane {
@@ -173,7 +173,7 @@
 .jfx-tool-bar {
     -fx-font-size: 20.0;
     -fx-font-weight: BOLD;
-    -fx-background-color: #5264AE;
+    -fx-background-color: -fx-blue;
     -fx-pref-width: 100.0%;
     -fx-pref-height: 64.0px;
 }
@@ -236,8 +236,8 @@
 }
 
 .custom-jfx-radio-button-blue {
-    -fx-text-fill: #5264AE;
-    -jfx-selected-color: #5264AE;
+    -fx-text-fill: -fx-blue;
+    -jfx-selected-color: -fx-blue;
     -jfx-unselected-color: #212121;
 }
 
@@ -271,7 +271,7 @@
 *******************************************************/
 
 .jfx-slider-colored{
-    -jfx-default-thumb: #5264AE;
+    -jfx-default-thumb: -fx-blue;
     -jfx-default-track: #212121;
 }
 
@@ -307,7 +307,7 @@
 *******************************************************************************/
 
 /*.jfx-rippler {
-	-fx-rippler-fill: #5264AE;
+	-fx-rippler-fill: -fx-blue;
 	-fx-mask-type: RECT;
 }*/
 .jfx-rippler:hover {
@@ -349,9 +349,9 @@
 }
 
 .custom-jfx-check-box-all-colored {
-    -jfx-checked-color: #5264AE;
-    -jfx-unchecked-color: #5264AE;
-    -fx-text-fill: #5264AE;
+    -jfx-checked-color: -fx-blue;
+    -jfx-unchecked-color: -fx-blue;
+    -fx-text-fill: -fx-blue;
 }
 
 .custom-jfx-check-box-text-colored {
@@ -384,7 +384,7 @@
 }
 
 .custom-jfx-progress-bar-stroke > .bar {
-    -fx-background-color: #5264AE;
+    -fx-background-color: -fx-blue;
     -fx-padding: 6;
 }
 
@@ -431,7 +431,7 @@
 }
 
 .jfx-list-cell .jfx-rippler {
-    -jfx-rippler-fill: #5264AE;
+    -jfx-rippler-fill: -fx-blue;
 }
 
 .jfx-list-cell:odd:selected > .jfx-rippler > StackPane,
@@ -474,8 +474,8 @@
 
 .custom-jfx-list-view-icon,
 .jfx-list-cell:selected .label .custom-jfx-list-view-icon {
-    /*-fx-text-fill: #5264AE;*/
-    -fx-fill: #5264AE;
+    /*-fx-text-fill: -fx-blue;*/
+    -fx-fill: -fx-blue;
     -fx-padding: 0.0 10.0 0.0 5.0;
     -fx-cursor: hand;
 }
@@ -744,7 +744,7 @@
 .combo-box-popup .list-view .jfx-list-cell .custom-jfx-list-view-icon,
 .combo-box-popup .list-view .jfx-list-cell:filled:hover .custom-jfx-list-view-icon,
 .combo-box-popup .list-view .jfx-list-cell:selected .custom-jfx-list-view-icon {
-    -fx-fill: #5264AE;
+    -fx-fill: -fx-blue;
 }
 
 .combo-box-popup .list-view .jfx-list-cell:odd:selected > .jfx-rippler > StackPane,
@@ -762,7 +762,7 @@
 }
 
 .combo-box-popup .list-view .jfx-list-cell .jfx-rippler {
-    -jfx-rippler-fill: #5264AE;
+    -jfx-rippler-fill: -fx-blue;
 }
 
 /*******************************************************************************
@@ -772,7 +772,7 @@
 *******************************************************************************/
 
 .jfx-decorator {
-    -fx-decorator-color: derive(#5264AE, -20%);
+    -fx-decorator-color: derive(-fx-blue, -20%);
 }
 
 .jfx-decorator .jfx-decorator-buttons-container {

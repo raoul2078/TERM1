@@ -1,52 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import com.jfoenix.controls.JFXListView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<StackPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import com.jfoenix.controls.JFXTreeTableColumn?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/8"
            xmlns:fx="http://javafx.com/fxml/1">
-    <HBox>
-        <VBox HBox.hgrow="ALWAYS">
-            <JFXListView fx:id="list" VBox.vgrow="ALWAYS">
-                <Label>
-                    <Label fx:id="name"/>
-                    <graphic>
-                        <StackPane styleClass="custom-jfx-list-view-icon-container">
-                            <FontAwesomeIconView glyphName="USER_MD" size="2.5em"
-                                                 styleClass="option-jfx-list-view-icon"/>
-                        </StackPane>
-                    </graphic>
-                </Label>
-                <Label fx:id="heightAndweight"/>
-                <Label>
-                    <Label fx:id="email"/>
-                    <graphic>
-                        <StackPane styleClass="custom-jfx-list-view-icon-container">
-                            <FontAwesomeIconView glyphName="ENVELOPE" size="2.5em"
-                                                 styleClass="option-jfx-list-view-icon"/>
-                        </StackPane>
-                    </graphic>
-                </Label>
-                <Label>
-                    <Label fx:id="phone"/>
-                    <graphic>
-                        <StackPane styleClass="custom-jfx-list-view-icon-container">
-                            <FontAwesomeIconView glyphName="MOBILE_PHONE" size="2.5em"
-                                                 styleClass="option-jfx-list-view-icon"/>
-                        </StackPane>
-                    </graphic>
-                </Label>
-            </JFXListView>
-        </VBox>
-        <VBox HBox.hgrow="ALWAYS">
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                <Label>Menu</Label>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS"/>
-        </VBox>
-    </HBox>
+    <BorderPane prefHeight="700.0" prefWidth="700.0">
+        <center>
+            <JFXTabPane fx:id="mainTabPane">
+                <tabs>
+                    <Tab fx:id="patientInfosTab" text="Infos Patient">
+                        <content>
+                            <VBox spacing="20" maxWidth="400" maxHeight="400">
+                                <JFXListView fx:id="list" layoutY="50">
+                                    <Label fx:id="name" styleClass="title">
+                                        <graphic>
+                                            <StackPane styleClass="custom-jfx-list-view-icon-container">
+                                                <FontAwesomeIconView glyphName="USER" size="1.5em"
+                                                                     styleClass="option-jfx-list-view-icon"/>
+                                            </StackPane>
+                                        </graphic>
+                                    </Label>
+                                    <Label fx:id="diet" styleClass="subhead"/>
+                                    <Label fx:id="heightAndWeight">
+                                        <graphic>
+                                            <StackPane styleClass="custom-jfx-list-view-icon-container">
+                                                <FontAwesomeIconView glyphName="CHILD" size="1.5em"
+                                                                     styleClass="option-jfx-list-view-icon"/>
+                                            </StackPane>
+                                        </graphic>
+                                    </Label>
+                                    <Label fx:id="email">
+                                        <graphic>
+                                            <StackPane styleClass="custom-jfx-list-view-icon-container">
+                                                <FontAwesomeIconView glyphName="ENVELOPE" size="1.5em"
+                                                                     styleClass="option-jfx-list-view-icon"/>
+                                            </StackPane>
+                                        </graphic>
+                                    </Label>
+                                    <Label fx:id="phone">
+                                        <graphic>
+                                            <StackPane styleClass="custom-jfx-list-view-icon-container">
+                                                <FontAwesomeIconView glyphName="MOBILE_PHONE" size="2em"
+                                                                     styleClass="option-jfx-list-view-icon"/>
+                                            </StackPane>
+                                        </graphic>
+                                    </Label>
+                                </JFXListView>
+                            </VBox>
+                        </content>
+                    </Tab>
+                    <Tab fx:id="favoriteFoodsTab" text="Aliments favoris">
+                        <content>
+                            <VBox spacing="20" maxWidth="300" maxHeight="300" alignment="TOP_LEFT">
+                                <JFXTreeTableView fx:id="favoriteFoodsTreeTableView" maxWidth="200" maxHeight="400">
+                                    <columns>
+                                        <JFXTreeTableColumn fx:id="favoriteFoodsNameColumn"
+                                                            minWidth="133" text="Aliment"
+                                        />
+                                    </columns>
+                                    <contextMenu>
+                                        <ContextMenu>
+                                            <items>
+                                                <MenuItem mnemonicParsing="false" onAction="#deleteFromFavoriteBis"
+                                                          text="Retirer des aliments favoris"/>
+                                            </items>
+                                        </ContextMenu>
+                                    </contextMenu>
+                                </JFXTreeTableView>
+                            </VBox>
+                        </content>
+                    </Tab>
+                    <Tab fx:id="allergenTab" text="Allergènes">
+                        <content>
+                            <VBox spacing="20" maxWidth="300" maxHeight="300" alignment="TOP_LEFT">
+                                <JFXTreeTableView fx:id="allergenTreeTableView" maxWidth="200" maxHeight="400">
+                                    <columns>
+                                        <JFXTreeTableColumn fx:id="allergenNameColumn"
+                                                            minWidth="133" text="Aliment"
+                                        />
+                                    </columns>
+                                </JFXTreeTableView>
+                            </VBox>
+                        </content>
+                    </Tab>
+                    <Tab fx:id="menuTab" text="Menu">
+                        <content>
+                            <VBox maxWidth="700" maxHeight="700" prefWidth="700" prefHeight="700" spacing="10">
+                                <VBox spacing="10">
+                                    <VBox.margin>
+                                        <Insets top="10"/>
+                                    </VBox.margin>
+                                    <JFXTextField fx:id="caloriesMin" labelFloat="true" promptText="Calories Min"
+                                                  prefWidth="200"/>
+                                    <JFXTextField fx:id="caloriesMax" labelFloat="true" promptText="Calories Max"
+                                                  prefWidth="200"/>
+                                    <HBox>
+                                        <Label>Protéines Min</Label>
+                                        <JFXSlider fx:id="proteinsMin" prefWidth="200"
+                                                   style="-jfx-default-thumb: #ff5252"/>
+                                    </HBox>
+                                    <HBox>
+                                        <Label>Protéines Max</Label>
+                                        <JFXSlider fx:id="proteinsMax" prefWidth="200"
+                                                   style="-jfx-default-thumb: #ff5252"/>
+                                    </HBox>
+                                    <HBox>
+                                        <Label>Glucides Min</Label>
+                                        <JFXSlider fx:id="carbsMin" prefWidth="200"
+                                                   style="-jfx-default-thumb: -fx-blue"/>
+                                    </HBox>
+                                    <HBox>
+                                        <Label>Glucides Max</Label>
+                                        <JFXSlider fx:id="carbsMax" prefWidth="200"
+                                                   style="-jfx-default-thumb: -fx-blue"/>
+                                    </HBox>
+                                    <HBox>
+                                        <Label>Lipides Min</Label>
+                                        <JFXSlider fx:id="lipidsMin" prefWidth="200"
+                                                   style="-jfx-default-thumb: darkorange"/>
+                                    </HBox>
+                                    <HBox>
+                                        <Label>Lipides Max</Label>
+                                        <JFXSlider fx:id="lipidsMax" prefWidth="200"
+                                                   style="-jfx-default-thumb: darkorange"/>
+                                    </HBox>
+                                </VBox>
+                                <VBox>
+                                    <HBox alignment="CENTER">
+                                        <Label styleClass="title-label">Selectionnez les aliments</Label>
+                                        <StackPane HBox.hgrow="ALWAYS">
+                                            <StackPane StackPane.alignment="CENTER_RIGHT" maxWidth="200">
+                                                <JFXTextField fx:id="searchField" promptText="Search..."/>
+                                            </StackPane>
+                                        </StackPane>
+                                    </HBox>
+                                    <JFXTreeTableView fx:id="allFoodsTableView" maxHeight="230">
+                                        <columns>
+                                            <JFXTreeTableColumn fx:id="allFoodsNameColumn"
+                                                                minWidth="300" text="Nom"
+                                            />
+                                            <JFXTreeTableColumn fx:id="allFoodsCaloriesColumn" text="Calories"
+                                                                minWidth="20"/>
+                                            <JFXTreeTableColumn fx:id="allFoodsProteinsColumn" text="Protéines"
+                                                                minWidth="20"/>
+                                            <JFXTreeTableColumn fx:id="allFoodsCarbsColumn" text="Glucides"
+                                                                minWidth="20"/>
+                                            <JFXTreeTableColumn fx:id="allFoodsLipidsColumn" text="Lipides"
+                                                                minWidth="20"/>
+                                        </columns>
+                                        <contextMenu>
+                                            <ContextMenu>
+                                                <items>
+                                                    <MenuItem mnemonicParsing="false" onAction="#addToMenu"
+                                                              text="Ajouter au menu"/>
+                                                    <MenuItem mnemonicParsing="false" onAction="#deleteFromMenu"
+                                                              text="Retirer du menu"/>
+                                                    <MenuItem mnemonicParsing="false" onAction="#addToFavorite"
+                                                              text="Ajouter aux aliments favoris"/>
+                                                    <MenuItem mnemonicParsing="false" onAction="#deleteFromFavorite"
+                                                              text="Retirer des aliments favoris"/>
+                                                </items>
+                                            </ContextMenu>
+                                        </contextMenu>
+                                    </JFXTreeTableView>
+                                </VBox>
+                                <JFXButton fx:id="btnGenerateMeal" prefWidth="150" prefHeight="40" buttonType="RAISED"
+                                           styleClass="btn-success" text="GENERER UN MENU"
+                                           onMouseClicked="#generateMeal"/>
+
+                            </VBox>
+                        </content>
+                    </Tab>
+                </tabs>
+            </JFXTabPane>
+        </center>
+    </BorderPane>
 </StackPane>

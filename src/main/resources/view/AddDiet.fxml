@@ -6,10 +6,48 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <StackPane fx:id="root"
            xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml">
-    <VBox>
+    <VBox maxWidth="700" maxHeight="700" prefWidth="700" prefHeight="700" spacing="20" alignment="TOP_CENTER">
         <Label styleClass="title-label">Ajout régime</Label>
+        <JFXTextField fx:id="name" labelFloat="true" promptText="Nom" prefWidth="200"/>
+        <JFXTextArea fx:id="description" labelFloat="true" promptText="Description" prefWidth="200" prefRowCount="5"/>
+        <JFXTextField fx:id="caloriesMin" labelFloat="true" promptText="Calories Min" prefWidth="200"/>
+        <JFXTextField fx:id="caloriesMax" labelFloat="true" promptText="Calories Max" prefWidth="200"/>
+        <HBox alignment="TOP_CENTER">
+            <Label>Protéines Min</Label>
+            <JFXSlider fx:id="proteinsMin" prefWidth="200" max="200"
+                       style="-jfx-default-thumb: #ff5252"/>
+        </HBox>
+        <HBox alignment="TOP_CENTER">
+            <Label>Protéines Max</Label>
+            <JFXSlider fx:id="proteinsMax" prefWidth="200" max="200"
+                       style="-jfx-default-thumb: #ff5252"/>
+        </HBox>
+        <HBox alignment="TOP_CENTER">
+            <Label>Glucides Min</Label>
+            <JFXSlider fx:id="carbsMin" prefWidth="200" max="300" style="-jfx-default-thumb: -fx-blue"/>
+        </HBox>
+        <HBox alignment="TOP_CENTER">
+            <Label>Glucides Max</Label>
+            <JFXSlider fx:id="carbsMax" prefWidth="200" max="300" style="-jfx-default-thumb: -fx-blue"/>
+        </HBox>
+        <HBox alignment="TOP_CENTER">
+            <Label>Lipides Min</Label>
+            <JFXSlider fx:id="lipidsMin" prefWidth="200" max="200"
+                       style="-jfx-default-thumb: darkorange"/>
+        </HBox>
+        <HBox alignment="TOP_CENTER">
+            <Label>Lipides Max</Label>
+            <JFXSlider fx:id="lipidsMax" prefWidth="200" max="200"
+                       style="-jfx-default-thumb: darkorange"/>
+        </HBox>
+        <JFXButton fx:id="btnGenerateMeal" prefWidth="100" prefHeight="40" buttonType="RAISED"
+                   styleClass="btn-success" text="VALIDER" onMouseClicked="#addDiet"/>
     </VBox>
 </StackPane>

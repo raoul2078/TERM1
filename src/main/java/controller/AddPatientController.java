@@ -3,17 +3,26 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import database.DatabaseHandler;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import model.Diet;
 import model.Patient;
+import utils.AlertMaker;
 
 import javax.annotation.PostConstruct;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @ViewController(value = "/view/AddPatient.fxml", title = "My App")
 public class AddPatientController {
+
+    DatabaseHandler handler;
 
     @FXMLViewFlowContext
     private ViewFlowContext context;
@@ -44,8 +53,8 @@ public class AddPatientController {
 
 
     @PostConstruct
-    public void init() {
-        diets.getItems().add(new Label("Hypoglycemique"));
+    public void init() throws SQLException {
+        handler = DatabaseHandler.getInstance();
 
         phone.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d{0,10}?")) {
@@ -64,6 +73,14 @@ public class AddPatientController {
                 weight.setText(oldValue);
             }
         });
+
+        String q = "SELECT nom FROM regime";
+        ResultSet resultSet = handler.execQuery(q);
+        if (resultSet != null) {
+            while (resultSet.next()) {
+                diets.getItems().add(new Label(resultSet.getString("nom")));
+            }
+        }
     }
 
     public void add() {
@@ -71,11 +88,27 @@ public class AddPatientController {
         String firstname = this.firstName.getText();
         String email = this.email.getText();
         String phone = this.phone.getText();
-        double height = Double.parseDouble(this.height.getText());
+        int height = Integer.parseInt(this.height.getText());
         double weight = Double.parseDouble(this.weight.getText().replace(",", "."));
-        String diet = this.diets.getSelectionModel().getSelectedItem().toString();
+        String diet = this.diets.getSelectionModel().getSelectedItem().getText();
+        String doctor = (String) context.getRegisteredObject("login");
 
-        Patient patient = new Patient(firstname, lastname, email, phone, height, weight, diet);
-        System.out.println(patient);
+        String q = "INSERT INTO patient VALUES ("
+                + "null,"
+                + "'" + lastname + "',"
+                + "'" + firstname + "',"
+                + height + ","
+                + weight + ","
+                + "'" + email + "',"
+                + "'" + phone + "',"
+                + "'" + doctor + "',"
+                + "'" + diet + "'"
+                + ")";
+
+        if (handler.execAction(q)) {
+            AlertMaker.showInfo("Ajout patient", "Patient ajouté");
+        } else {
+            AlertMaker.showError("Ajout patient impossible", "Une erreur s'est produite");
+        }
     }
 }

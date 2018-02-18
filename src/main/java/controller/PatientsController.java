@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import database.DatabaseHandler;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.FlowException;
@@ -16,24 +17,22 @@ import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableRow;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 import model.Patient;
 
 import javax.annotation.PostConstruct;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
-import java.util.function.Function;
 
 
 @ViewController(value = "/view/Patients.fxml", title = "My App")
 public class PatientsController {
+
+    DatabaseHandler handler;
 
     @FXMLViewFlowContext
     private ViewFlowContext context;
@@ -45,36 +44,37 @@ public class PatientsController {
     @FXML
     private JFXTreeTableColumn<Patient, String> lastNameColumn;
     @FXML
-    private JFXTreeTableColumn<Patient, String> heightColumn;
+    private JFXTreeTableColumn<Patient, Integer> heightColumn;
     @FXML
-    private JFXTreeTableColumn<Patient, String> weightColumn;
+    private JFXTreeTableColumn<Patient, Double> weightColumn;
     @FXML
     private JFXTreeTableColumn<Patient, String> dietColumn;
     @FXML
     private JFXTextField searchField;
-
-    ObservableList<Patient> list = FXCollections.observableArrayList();
-
 
     @ActionHandler
     protected FlowActionHandler actionHandler;
 
     @PostConstruct
     public void init() {
+        handler = DatabaseHandler.getInstance();
         Objects.requireNonNull(context, "context");
         Flow contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
-        setupTableView();
-        loadData();
-       contentFlow.withLink(PatientsController.class, "showPatient", PatientDetailsController.class);
-
+        setupTreeTableView();
+        try {
+            loadData();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        contentFlow.withLink(PatientsController.class, "showPatient", PatientDetailsController.class);
     }
 
-    private void setupTableView() {
+    private void setupTreeTableView() {
         firstNameColumn.setCellValueFactory(param -> param.getValue().getValue().firstNameProperty());
         lastNameColumn.setCellValueFactory(param -> param.getValue().getValue().lastNameProperty());
         dietColumn.setCellValueFactory(param -> param.getValue().getValue().dietProperty());
-        heightColumn.setCellValueFactory(param -> new SimpleStringProperty(String.valueOf((param.getValue().getValue().getHeight()))));
-        weightColumn.setCellValueFactory(param -> new SimpleStringProperty(String.valueOf((param.getValue().getValue().getWeight()))));
+        heightColumn.setCellValueFactory(param -> param.getValue().getValue().heightProperty().asObject());
+        weightColumn.setCellValueFactory(param -> param.getValue().getValue().weightProperty().asObject());
 
         searchField.textProperty().addListener(setupSearchField(treeTableView));
 
@@ -82,16 +82,21 @@ public class PatientsController {
             TreeTableRow<Patient> row = new TreeTableRow<>();
             row.setOnMouseClicked(event -> {
                 Patient patient = row.getItem();
-                System.out.println(patient);
                 try {
-                    FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
-                    contentFlowHandler.handle("showPatient");
+                    navigateToPatientDetails(patient);
                 } catch (VetoException | FlowException e) {
                     e.printStackTrace();
                 }
             });
             return row;
         });
+    }
+
+    private void navigateToPatientDetails(Patient patient) throws VetoException, FlowException {
+        FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
+        context.register("Patient", patient);
+        contentFlowHandler.handle("showPatient");
+
     }
 
     private ChangeListener<String> setupSearchField(final JFXTreeTableView<Patient> tableView) {
@@ -107,22 +112,26 @@ public class PatientsController {
     }
 
 
-    private void loadData() {
-        ObservableList<Patient> data = generateDummyData(30);
-        treeTableView.setRoot(new RecursiveTreeItem<>(data, RecursiveTreeObject::getChildren));
+    private void loadData() throws SQLException {
+        String doctor = (String)context.getRegisteredObject("login");
+        ObservableList<Patient> patients = FXCollections.observableArrayList();
+        ResultSet resultSet = handler.getPatients(doctor);
+        if (resultSet != null) {
+            while (resultSet.next()) {
+                Patient patient = new Patient(
+                        resultSet.getInt("id"),
+                        resultSet.getString("prenom"),
+                        resultSet.getString("nom"),
+                        resultSet.getString("email"),
+                        resultSet.getString("tel"),
+                        resultSet.getInt("taille"),
+                        resultSet.getDouble("poids"),
+                        resultSet.getString("regime")
+                );
+                patients.add(patient);
+            }
+        }
+        treeTableView.setRoot(new RecursiveTreeItem<>(patients, RecursiveTreeObject::getChildren));
         treeTableView.setShowRoot(false);
     }
-
-    private ObservableList<Patient> generateDummyData(int numberOfEntries) {
-        final ObservableList<Patient> dummyData = FXCollections.observableArrayList();
-        for (int i = 1; i <= numberOfEntries; i++) {
-            dummyData.add(createNewRandomPatient(i));
-        }
-        return dummyData;
-    }
-
-    private Patient createNewRandomPatient(int i) {
-        return new Patient("John " + i, "Doe " + i, "jdoe" + i + "@gmail.com", "000000000", 180, 65, "Hypoglycemique");
-    }
-
 }

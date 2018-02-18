@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application{
+public class Main extends Application {
 
     @FXMLViewFlowContext
     private ViewFlowContext flowContext;
@@ -36,15 +36,14 @@ public class Main extends Application{
         decorator.setGraphic(new SVGGlyph(""));
 
         double width = 800;
-        double height = 600;
+        double height = 700;
 
         Scene scene = new Scene(decorator, width, height);
         final ObservableList<String> stylesheets = scene.getStylesheets();
         stylesheets.addAll(Main.class.getResource("/css/jfoenix-fonts.css").toExternalForm(),
                 Main.class.getResource("/css/jfoenix-design.css").toExternalForm(),
                 Main.class.getResource("/css/jfoenix-main-demo.css").toExternalForm(),
-                Main.class.getResource("/css/style.css").toExternalForm(),
-                Main.class.getResource("/css/dark.css").toExternalForm()
+                Main.class.getResource("/css/style.css").toExternalForm()
         );
         stage.setScene(scene);
         stage.show();

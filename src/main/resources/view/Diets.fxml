@@ -6,10 +6,109 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import com.jfoenix.controls.JFXTreeTableColumn?>
+<?import com.jfoenix.controls.JFXDialogLayout?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDialog?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXSlider?>
 <StackPane fx:id="root"
            xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml">
-    <VBox>
-        <Label styleClass="title-label">Les régimes</Label>
+    <VBox maxWidth="700" maxHeight="700" spacing="10">
+        <children>
+            <HBox alignment="CENTER">
+                <Label styleClass="title-label">Patients</Label>
+                <StackPane HBox.hgrow="ALWAYS">
+                    <StackPane StackPane.alignment="CENTER_RIGHT" maxWidth="200">
+                        <JFXTextField fx:id="searchField" promptText="Search..."/>
+                    </StackPane>
+                </StackPane>
+            </HBox>
+            <JFXTreeTableView fx:id="treeTableView">
+                <columns>
+                    <JFXTreeTableColumn fx:id="nameColumn"
+                                        minWidth="133" text="Nom" prefWidth="133"
+                                        resizable="false"/>
+                    <JFXTreeTableColumn fx:id="caloriesMinColumn" text="Kcal min"
+                                        minWidth="133" resizable="false"/>
+                    <JFXTreeTableColumn fx:id="caloriesMaxColumn" text="Kcal max"
+                                        minWidth="133" resizable="false"/>
+                    <JFXTreeTableColumn fx:id="proteinsMinColumn" text="Prot. min"
+                                        minWidth="133" resizable="false"/>
+                    <JFXTreeTableColumn fx:id="proteinsMaxColumn" text="Prot. max"
+                                        minWidth="133" resizable="false"/>
+                    <JFXTreeTableColumn fx:id="carbsMinColumn" text="Gluc. min"
+                                        minWidth="133" resizable="false"/>
+                    <JFXTreeTableColumn fx:id="carbsMaxColumn" text="Gluc. max"
+                                        minWidth="133" resizable="false"/>
+                    <JFXTreeTableColumn fx:id="lipidsMinColumn" text="Lip min"
+                                        minWidth="133" resizable="false"/>
+                    <JFXTreeTableColumn fx:id="lipidsMaxColumn" text="Lip max"
+                                        minWidth="133" resizable="false"/>
+                </columns>
+                <contextMenu>
+                    <ContextMenu>
+                        <items>
+                            <MenuItem mnemonicParsing="false" onAction="#dietEditOption" text="Modifier"/>
+                            <MenuItem mnemonicParsing="false" onAction="#dietDeleteOption" text="Supprimer"/>
+                        </items>
+                    </ContextMenu>
+                </contextMenu>
+            </JFXTreeTableView>
+        </children>
     </VBox>
+
+    <JFXDialog fx:id="dietEditDialog">
+        <JFXDialogLayout>
+            <heading>
+                <Label>Modifier</Label>
+            </heading>
+            <body>
+                <VBox spacing="20"
+                      alignment="TOP_CENTER">
+                    <JFXTextField fx:id="name" labelFloat="true" promptText="Nom" prefWidth="200"/>
+                    <JFXTextArea fx:id="description" labelFloat="true" promptText="Description" prefWidth="200"
+                                 prefRowCount="5"/>
+                    <JFXTextField fx:id="caloriesMin" labelFloat="true" promptText="Calories Min" prefWidth="200"/>
+                    <JFXTextField fx:id="caloriesMax" labelFloat="true" promptText="Calories Max" prefWidth="200"/>
+                    <HBox alignment="TOP_CENTER">
+                        <Label>Protéines Min</Label>
+                        <JFXSlider fx:id="proteinsMin" prefWidth="200" max="200"
+                                   style="-jfx-default-thumb: #ff5252"/>
+                    </HBox>
+                    <HBox alignment="TOP_CENTER">
+                        <Label>Protéines Max</Label>
+                        <JFXSlider fx:id="proteinsMax" prefWidth="200" max="200"
+                                   style="-jfx-default-thumb: #ff5252"/>
+                    </HBox>
+                    <HBox alignment="TOP_CENTER">
+                        <Label>Glucides Min</Label>
+                        <JFXSlider fx:id="carbsMin" prefWidth="200" max="300" style="-jfx-default-thumb: -fx-blue"/>
+                    </HBox>
+                    <HBox alignment="TOP_CENTER">
+                        <Label>Glucides Max</Label>
+                        <JFXSlider fx:id="carbsMax" prefWidth="200" max="300" style="-jfx-default-thumb: -fx-blue"/>
+                    </HBox>
+                    <HBox alignment="TOP_CENTER">
+                        <Label>Lipides Min</Label>
+                        <JFXSlider fx:id="lipidsMin" prefWidth="200" max="200"
+                                   style="-jfx-default-thumb: darkorange"/>
+                    </HBox>
+                    <HBox alignment="TOP_CENTER">
+                        <Label>Lipides Max</Label>
+                        <JFXSlider fx:id="lipidsMax" prefWidth="200" max="200"
+                                   style="-jfx-default-thumb: darkorange"/>
+                    </HBox>
+                </VBox>
+
+            </body>
+            <actions>
+                <JFXButton fx:id="updateButton" styleClass="dialog-accept">VALIDER
+                </JFXButton>
+            </actions>
+        </JFXDialogLayout>
+    </JFXDialog>
 </StackPane>
