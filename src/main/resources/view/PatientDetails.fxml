@@ -11,6 +11,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <StackPane fx:id="root" xmlns="http://javafx.com/javafx/8"
            xmlns:fx="http://javafx.com/fxml/1">
     <BorderPane prefHeight="700.0" prefWidth="700.0">
@@ -95,45 +96,53 @@
                     <Tab fx:id="menuTab" text="Menu">
                         <content>
                             <VBox maxWidth="700" maxHeight="700" prefWidth="700" prefHeight="700" spacing="10">
-                                <VBox spacing="10">
+                                <HBox spacing="30">
                                     <VBox.margin>
                                         <Insets top="10"/>
                                     </VBox.margin>
-                                    <JFXTextField fx:id="caloriesMin" labelFloat="true" promptText="Calories Min"
-                                                  prefWidth="200"/>
-                                    <JFXTextField fx:id="caloriesMax" labelFloat="true" promptText="Calories Max"
-                                                  prefWidth="200"/>
-                                    <HBox>
-                                        <Label>Protéines Min</Label>
-                                        <JFXSlider fx:id="proteinsMin" prefWidth="200"
-                                                   style="-jfx-default-thumb: #ff5252"/>
-                                    </HBox>
-                                    <HBox>
-                                        <Label>Protéines Max</Label>
-                                        <JFXSlider fx:id="proteinsMax" prefWidth="200"
-                                                   style="-jfx-default-thumb: #ff5252"/>
-                                    </HBox>
-                                    <HBox>
-                                        <Label>Glucides Min</Label>
-                                        <JFXSlider fx:id="carbsMin" prefWidth="200"
-                                                   style="-jfx-default-thumb: -fx-blue"/>
-                                    </HBox>
-                                    <HBox>
-                                        <Label>Glucides Max</Label>
-                                        <JFXSlider fx:id="carbsMax" prefWidth="200"
-                                                   style="-jfx-default-thumb: -fx-blue"/>
-                                    </HBox>
-                                    <HBox>
-                                        <Label>Lipides Min</Label>
-                                        <JFXSlider fx:id="lipidsMin" prefWidth="200"
-                                                   style="-jfx-default-thumb: darkorange"/>
-                                    </HBox>
-                                    <HBox>
-                                        <Label>Lipides Max</Label>
-                                        <JFXSlider fx:id="lipidsMax" prefWidth="200"
-                                                   style="-jfx-default-thumb: darkorange"/>
-                                    </HBox>
-                                </VBox>
+                                    <VBox spacing="10">
+                                        <VBox.margin>
+                                            <Insets top="10"/>
+                                        </VBox.margin>
+                                        <JFXTextField fx:id="caloriesMin" labelFloat="true" promptText="Calories Min"
+                                                      prefWidth="200"/>
+                                        <JFXTextField fx:id="caloriesMax" labelFloat="true" promptText="Calories Max"
+                                                      prefWidth="200"/>
+                                        <HBox>
+                                            <Label>Protéines Min</Label>
+                                            <JFXSlider fx:id="proteinsMin" prefWidth="200"
+                                                       style="-jfx-default-thumb: #ff5252"/>
+                                        </HBox>
+                                        <HBox>
+                                            <Label>Protéines Max</Label>
+                                            <JFXSlider fx:id="proteinsMax" prefWidth="200"
+                                                       style="-jfx-default-thumb: #ff5252"/>
+                                        </HBox>
+                                        <HBox>
+                                            <Label>Glucides Min</Label>
+                                            <JFXSlider fx:id="carbsMin" prefWidth="200"
+                                                       style="-jfx-default-thumb: -fx-blue"/>
+                                        </HBox>
+                                        <HBox>
+                                            <Label>Glucides Max</Label>
+                                            <JFXSlider fx:id="carbsMax" prefWidth="200"
+                                                       style="-jfx-default-thumb: -fx-blue"/>
+                                        </HBox>
+                                        <HBox>
+                                            <Label>Lipides Min</Label>
+                                            <JFXSlider fx:id="lipidsMin" prefWidth="200"
+                                                       style="-jfx-default-thumb: darkorange"/>
+                                        </HBox>
+                                        <HBox>
+                                            <Label>Lipides Max</Label>
+                                            <JFXSlider fx:id="lipidsMax" prefWidth="200"
+                                                       style="-jfx-default-thumb: darkorange"/>
+                                        </HBox>
+                                    </VBox>
+                                    <VBox spacing="10">
+                                        <JFXListView fx:id="menuFoodsListView" prefHeight="200" prefWidth="300"/>
+                                    </VBox>
+                                </HBox>
                                 <VBox>
                                     <HBox alignment="CENTER">
                                         <Label styleClass="title-label">Selectionnez les aliments</Label>

@@ -161,4 +161,9 @@ public class Food extends RecursiveTreeObject<Food> {
     public SimpleIntegerProperty lipidsProperty() {
         return lipids;
     }
+
+    @Override
+    public String toString() {
+        return name.get();
+    }
 }

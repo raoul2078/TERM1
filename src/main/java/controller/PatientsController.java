@@ -82,10 +82,12 @@ public class PatientsController {
             TreeTableRow<Patient> row = new TreeTableRow<>();
             row.setOnMouseClicked(event -> {
                 Patient patient = row.getItem();
-                try {
-                    navigateToPatientDetails(patient);
-                } catch (VetoException | FlowException e) {
-                    e.printStackTrace();
+                if (patient != null) {
+                    try {
+                        navigateToPatientDetails(patient);
+                    } catch (VetoException | FlowException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
             return row;

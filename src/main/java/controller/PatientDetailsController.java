@@ -9,8 +9,12 @@ import io.datafx.controller.flow.FlowHandler;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -23,6 +27,8 @@ import utils.AlertMaker;
 import javax.annotation.PostConstruct;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @ViewController(value = "/view/PatientDetails.fxml", title = "My App")
@@ -56,8 +62,6 @@ public class PatientDetailsController {
     @FXML
     private JFXTreeTableColumn<Food, String> favoriteFoodsNameColumn;
 
-    ObservableList<Patient> favoriteFoodsList = FXCollections.observableArrayList();
-
     @FXML
     JFXTextField caloriesMin;
     @FXML
@@ -88,9 +92,16 @@ public class PatientDetailsController {
     @FXML
     JFXTreeTableColumn<Food, Integer> allFoodsCarbsColumn;
     @FXML
+    private
     JFXTreeTableColumn<Food, Integer> allFoodsLipidsColumn;
     @FXML
     private JFXTextField searchField;
+
+    @FXML
+    JFXListView<Food> menuFoodsListView;
+
+    ListProperty<Food> menuFoodsListProperty = new SimpleListProperty<>();
+    ObservableList<Food> foodObservableList = FXCollections.observableArrayList();
 
     @PostConstruct
     public void init() {
@@ -120,6 +131,9 @@ public class PatientDetailsController {
                 caloriesMax.setText(oldValue);
             }
         });
+
+        menuFoodsListView.itemsProperty().bind(menuFoodsListProperty);
+        menuFoodsListProperty.set(foodObservableList);
     }
 
 
@@ -211,10 +225,13 @@ public class PatientDetailsController {
     }
 
     public void addToMenu() {
+        Food food = allFoodsTableView.getSelectionModel().getSelectedItem().getValue();
+        foodObservableList.add(food);
     }
 
     public void deleteFromMenu() {
-
+        Food food = allFoodsTableView.getSelectionModel().getSelectedItem().getValue();
+        foodObservableList.remove(food);
     }
 
     public void addToFavorite() {
