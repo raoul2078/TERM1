@@ -11,7 +11,9 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTabPane?>
-<?import com.jfoenix.controls.JFXTextArea?>
+
+<?import com.jfoenix.controls.JFXDialog?>
+<?import com.jfoenix.controls.JFXDialogLayout?>
 <StackPane fx:id="root" xmlns="http://javafx.com/javafx/8"
            xmlns:fx="http://javafx.com/fxml/1">
     <BorderPane prefHeight="700.0" prefWidth="700.0">
@@ -185,7 +187,6 @@
                                 <JFXButton fx:id="btnGenerateMeal" prefWidth="150" prefHeight="40" buttonType="RAISED"
                                            styleClass="btn-success" text="GENERER UN MENU"
                                            onMouseClicked="#generateMeal"/>
-
                             </VBox>
                         </content>
                     </Tab>
@@ -193,4 +194,22 @@
             </JFXTabPane>
         </center>
     </BorderPane>
+    <JFXDialog fx:id="menuDialog" overlayClose="false">
+        <JFXDialogLayout>
+            <heading>
+                <Label>Voici votre menu</Label>
+            </heading>
+            <body>
+                <Label>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                    enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat.
+                </Label>
+            </body>
+            <actions>
+                <JFXButton fx:id="menuButton" styleClass="dialog-accept">VALIDER
+                </JFXButton>
+            </actions>
+        </JFXDialogLayout>
+    </JFXDialog>
 </StackPane>

@@ -12,9 +12,7 @@ import io.datafx.controller.util.VetoException;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -27,8 +25,6 @@ import utils.AlertMaker;
 import javax.annotation.PostConstruct;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @ViewController(value = "/view/PatientDetails.fxml", title = "My App")
@@ -100,8 +96,13 @@ public class PatientDetailsController {
     @FXML
     JFXListView<Food> menuFoodsListView;
 
-    ListProperty<Food> menuFoodsListProperty = new SimpleListProperty<>();
-    ObservableList<Food> foodObservableList = FXCollections.observableArrayList();
+    private ListProperty<Food> menuFoodsListProperty = new SimpleListProperty<>();
+    private ObservableList<Food> foodObservableList = FXCollections.observableArrayList();
+
+    @FXML
+    JFXDialog menuDialog;
+    @FXML
+    JFXButton menuButton;
 
     @PostConstruct
     public void init() {
@@ -134,6 +135,9 @@ public class PatientDetailsController {
 
         menuFoodsListView.itemsProperty().bind(menuFoodsListProperty);
         menuFoodsListProperty.set(foodObservableList);
+
+        root.getChildren().remove(menuDialog);
+        menuButton.setOnMouseClicked(event -> menuDialog.close());
     }
 
 
@@ -281,6 +285,11 @@ public class PatientDetailsController {
     }
 
     public void generateMeal() {
-
+        if (foodObservableList.isEmpty()) {
+            AlertMaker.showError("Pas d'aliments", "Veuillez choisir des aliments");
+            return;
+        }
+        menuDialog.setTransitionType(JFXDialog.DialogTransition.TOP);
+        menuDialog.show((StackPane) context.getRegisteredObject("ContentPane"));
     }
 }
